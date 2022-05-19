@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace IngressoMVC.Models
+namespace IngressoMVC.Models.Interfaces 
 {
     public interface IEntidade
     {
