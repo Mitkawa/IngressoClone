@@ -1,15 +1,10 @@
 using IngressoMVC.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IngressoMVC
 {
@@ -22,15 +17,14 @@ namespace IngressoMVC
 
         public IConfiguration Configuration { get; }
 
-      
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<IngressoDbContext>(options=>
-            options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
+            services.AddDbContext<IngressoDbContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("SqlServer")));
+
             services.AddControllersWithViews();
         }
 
-      
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -40,7 +34,6 @@ namespace IngressoMVC
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -56,6 +49,8 @@ namespace IngressoMVC
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            InicializadorDeDados.Inicializar(app);
         }
     }
 }

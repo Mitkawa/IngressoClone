@@ -5,9 +5,8 @@ namespace IngressoMVC.Models
 {
     public abstract class Artista : IEntidade
     {
-        protected Artista( string nome, string bio, string fotoPerfilURL)
+        protected Artista(string nome, string bio, string fotoPerfilURL)
         {
-            
             DataCadastro = DateTime.Now;
             DataAlteracao = DataCadastro;
             Nome = nome;

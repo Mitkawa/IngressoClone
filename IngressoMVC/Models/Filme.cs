@@ -1,8 +1,6 @@
 ﻿using IngressoMVC.Models.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace IngressoMVC.Models
 {
@@ -14,6 +12,16 @@ namespace IngressoMVC.Models
             Descricao = descricao;
             Preco = preco;
             ImageURL = imageURL;
+        }
+
+        public Filme(string titulo, string descricao, decimal preco, string imageURL, int cinemaId, int produtorId)
+        {
+            Titulo = titulo;
+            Descricao = descricao;
+            Preco = preco;
+            ImageURL = imageURL;
+            ProdutorId = produtorId;
+            CinemaId = cinemaId;
         }
 
         public int Id { get; set; }
@@ -35,12 +43,14 @@ namespace IngressoMVC.Models
         public List<FilmeCategoria> FilmesCategorias { get; set; }
         #endregion
 
-        public void AlteraPreco(decimal novoPreco) 
+
+        public void AlteraPreco(decimal novoPreco)
         {
-            if (novoPreco <0) 
+            if(novoPreco < 0)
             {
                 return;
             }
+
             Preco = novoPreco;
         }
     }
