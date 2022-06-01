@@ -1,5 +1,6 @@
 ﻿using IngressoMVC.Models.Interfaces;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace IngressoMVC.Models
 {
@@ -17,8 +18,13 @@ namespace IngressoMVC.Models
         public int Id { get; set; }
         public DateTime DataCadastro { get; set; }
         public DateTime DataAlteracao { get; set; }
+
+        [Display(Name = "Nome")]
         public string Nome { get; private set; }
+
+        [Display(Name = "Biografia")]
         public string Bio { get; private set; }
+        [Display(Name ="Foto")]
         public string FotoPerfilURL { get; private set; }
     }
 }

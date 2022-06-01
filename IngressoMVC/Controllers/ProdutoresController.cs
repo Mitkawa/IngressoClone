@@ -7,31 +7,29 @@ using System.Threading.Tasks;
 
 namespace IngressoMVC.Controllers
 {
-    public class AtoresController : Controller
+    public class ProdutoresController : Controller
     {
         private IngressoDbContext _context;
-
-        public AtoresController(IngressoDbContext context)
+        public ProdutoresController(IngressoDbContext context)
         {
             _context = context;
         }
-
         public IActionResult Index()
         {
-            return View(_context.Atores);
+            return View(_context.Produtores);
         }
 
         public IActionResult Detalhes(int id)
         {
-            return View(_context.Atores.Find(id));
+            return View(_context.Produtores.Find(id));
         }
 
-        public IActionResult Criar() 
+        public IActionResult Criar()
         {
             return View();
         }
-        
-        public IActionResult Atualizar(int id) 
+
+        public IActionResult Atualizar(int id)
         {
             return View();
         }
@@ -40,6 +38,5 @@ namespace IngressoMVC.Controllers
         {
             return View();
         }
-
     }
 }
