@@ -1,9 +1,8 @@
 ﻿using IngressoMVC.Data;
+using IngressoMVC.Models;
+using IngressoMVC.Models.ViewModels.RequestDTO;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace IngressoMVC.Controllers
 {
@@ -20,25 +19,62 @@ namespace IngressoMVC.Controllers
         {
             return View(_context.Atores);
         }
-
+                
         public IActionResult Detalhes(int id)
         {
             return View(_context.Atores.Find(id));
         }
 
-        public IActionResult Criar() 
+        public IActionResult Criar()
         {
             return View();
         }
-        
-        public IActionResult Atualizar(int id) 
+                
+
+        [HttpPost]
+        public IActionResult Criar(PostAtorDTO atorDto)
         {
-            return View();
+            //validar os dados
+            if (!ModelState.IsValid || !atorDto.FotoPerfilURL.EndsWith(".jpg")) 
+            {
+                return View(atorDto);
+            }
+
+            //instanciar novo ator
+            Ator ator = new Ator(atorDto.Nome, atorDto.Bio, atorDto.FotoPerfilURL);
+
+            //gravar esse ator no banco de dados
+            _context.Atores.Add(ator);
+
+            //salvar as mudanças
+            _context.SaveChanges();
+            return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Atualizar(int id)
+        {
+            //buscar o ator no banco
+            //passar o ator na view
+            return View();
+        }
+         
         public IActionResult Deletar(int id)
         {
-            return View();
+            var result = _context.Atores.FirstOrDefault(a => a.Id == id);
+
+            if(result==null)return View();
+
+            return View(result);
+        }
+
+        [HttpDelete]
+        public IActionResult ConfirmarDeletar(int id)
+        {
+            var result = _context.Atores.FirstOrDefault(a => a.Id == id);
+            _context.Atores.Remove(result);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
         }
 
     }

@@ -24,7 +24,8 @@ namespace IngressoMVC.Models
 
         [Display(Name = "Biografia")]
         public string Bio { get; private set; }
-        [Display(Name ="Foto")]
+
+        [Display(Name = "Foto")]
         public string FotoPerfilURL { get; private set; }
     }
 }

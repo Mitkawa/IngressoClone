@@ -1,60 +1,67 @@
 ﻿@model IEnumerable<Filme>
 
-<div class="row" >
-    <div class="col-md-10 offset-md-1 .bg-dark">
-        <h1>
-            Filmes
-            -   
-            <a class="btn btn-dark" href="#">
-                Cadastrar
-            </a>
-        </h1>
+@{
+    ViewData["Title"] = "Lista de Filmes";
+}
 
-        <div class="col-12 my-2">
-            <input class="form-control" type="text" name="nome" id="nome" placeholder="Buscar Filme..." />
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4 col-xs-6 border-primary mb-3">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row g-0">
+                    <div class="col-md-12">
+                        <div class="card-header text-white bg-info">
+                            <p class="card-text">
+                                <h5 class="card-title">
+                                    @item.Titulo                                    
+                                </h5>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <img src="@item.ImageURL" width="100%" alt="@item.Titulo">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="card-body">
+                            <p class="card-text">@item.Descricao</p>
+                            <p class="card-text"><b>Start Date: </b>@item.DataCadastro.ToString("dd MMM yy")</p>
+                            <p class="card-text"><b>End Date: </b>@item.DataAlteracao.ToString("dd MMM yy")</p>
+                            <p class="card-text ">
+                                <b>Status: </b>
+                                @if (DateTime.Now >= item.DataCadastro && DateTime.Now <= item.DataAlteracao)
+                                {
+                                    <span class="badge bg-success text-white">DISPONÍVEL</span>
+                                }
+                                else if (DateTime.Now > item.DataAlteracao)
+                                {
+                                    <span class="badge bg-danger text-white">EXPIRADO</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-primary text-white">AGUARDANDO</span>
+                                }
+                            </p>
+
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="card-footer ">
+                            <p class="card-text">
+                                <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.Id">
+                                    <i class="bi bi-eye-fill"></i> Show Details
+                                </a>
+                                <a class="btn btn-success text-white @((DateTime.Now > item.DataAlteracao) ? "disabled" : "")"
+                                   asp-controller="Orders"
+                                   asp-action="AddItemToShoppingCart"
+                                   asp-route-id="@item.Id">
+                                    <i class="bi bi-cart-plus"></i> Add to Cart (Price @item.Preco.ToString("c"))
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
-        <table class="table table-striped">
-            <thead>
-                <tr>
-                    <th>Ações</th>
-                    <th>Foto de Perfil</th>
-                    <th>Nome</th>
-                    <th>Descrição</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var filme in Model)
-                {
-
-                    <tr>
-                        <td>
-                            <div class="d-flex flex-column ">
-                                <a class="btn btn-success" asp-action="Atualizar" asp-route-id="@filme.Id">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                    Editar
-                                </a>
-
-                                <a class="btn btn-primary mt-1" asp-action="Detalhes" asp-route-id="@filme.Id">
-                                    <i class="fa-solid fa-eye"></i>
-                                    Ver
-                                </a>
-
-                                <a class="btn btn-danger mt-1" asp-action="Deletar" asp-route-id="@filme.Id">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                    Excluir
-                                </a>
-                            </div>
-                        </td>
-                        <td class="align-middle">
-                            <img src="@filme.ImageURL" style="max-width:100px" alt="@filme.Titulo">
-                        </td>
-                        <td class="align-middle">@filme.Titulo</td>
-                        <td class="align-middle">@filme.Descricao</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-
-    </div>
+    }
 </div>

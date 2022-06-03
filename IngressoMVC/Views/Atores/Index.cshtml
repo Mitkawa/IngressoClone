@@ -1,16 +1,17 @@
 ﻿@model IEnumerable<Ator>
 
-@{ 
-    ViewData["Title"]= "índice Atores";
+@{
+    ViewData["Title"] = "Índice Atores";
 }
 
 <div class="row">
     <div class="col-md-10 offset-md-1">
-        <h1>Atores 
-        -
-        <a class="btn btn-dark" href="#">
-            Cadastrar
-        </a>
+        <h1>
+            Atores
+            -
+            <a class="btn btn-dark" asp-action="Criar">
+                Cadastrar
+            </a>
         </h1>
 
         <div class="col-12 my-2">
@@ -21,7 +22,7 @@
             <thead>
                 <tr>
                     <th>Ações</th>
-                    <th>@Html.DisplayNameFor(model =>model.FotoPerfilURL)</th>
+                    <th>@Html.DisplayNameFor(model => model.FotoPerfilURL)</th>
                     <th>@Html.DisplayNameFor(model => model.Nome)</th>
                     <th>@Html.DisplayNameFor(model => model.Bio)</th>
                 </tr>
@@ -29,20 +30,20 @@
             <tbody>
                 @foreach (var ator in Model)
                 {
-                    
+
                     <tr>
                         <td>
-                            <div class="d-flex flex-column ">
+                            <div class="d-flex flex-column">
                                 <a class="btn btn-success" asp-action="Atualizar" asp-route-id="@ator.Id">
                                     <i class="fa-solid fa-pen-to-square"></i>
                                     Editar
                                 </a>
-                               
+
                                 <a class="btn btn-primary mt-1" asp-action="Detalhes" asp-route-id="@ator.Id">
                                     <i class="fa-solid fa-eye"></i>
                                     Ver
                                 </a>
-                                
+
                                 <a class="btn btn-danger mt-1" asp-action="Deletar" asp-route-id="@ator.Id">
                                     <i class="fa-solid fa-trash-can"></i>
                                     Excluir
@@ -50,7 +51,8 @@
                             </div>
                         </td>
                         <td class="align-middle">
-                            <img src="@ator.FotoPerfilURL" style="max-width:100px" alt="@ator.Nome"></td>
+                            <img src="@ator.FotoPerfilURL" style="max-width:100px" alt="@ator.Nome">
+                        </td>
                         <td class="align-middle">@ator.Nome</td>
                         <td class="align-middle">@ator.Bio</td>
                     </tr>
