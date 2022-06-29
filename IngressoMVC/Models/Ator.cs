@@ -3,7 +3,7 @@
 namespace IngressoMVC.Models
 {
     public class Ator : Artista
-    {
+    {  
         public Ator(string nome, string bio, string fotoPerfilURL) 
             : base(nome, bio, fotoPerfilURL)
         {

@@ -4,16 +4,13 @@
     ViewData["Title"] = "Deletar Ator";
 }
 
-
-
 <div class="row text">
     <div class="col-md-8 offset-2">
         <p>
-            <h1>Deletar Ator</h1>
+            <h1>Deletar Ator @Model.Nome</h1>
         </p>
         <div class="row">
-            <div class="col-md-8 offset-2">
-                    <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="col-md-8 offset-2">                
                     <div class="form-group">
                         <label asp-for="Nome" class="control-label"></label>
                         <input asp-for="Nome" class="form-control" />
@@ -27,14 +24,13 @@
                         <input asp-for="FotoPerfilURL" class="form-control" />
                     </div>
 
-                    <div>
-                        <form asp-action="ConfirmarDeletar">
-                            <input type="hidden" asp-for="Id"/>
-                            <input type="submit" value="Confirmar" class="btn btn-outline-danger" />
+                    <div class="form-group">
+                        <form asp-action="Deletar">
+                            <input type="hidden" asp-for="Id" />
+                            <input type="submit" value="Confirmar" class="btn btn-outline-danger float-right" />
                         </form>
                         <a class="btn btn-outline-secondary" asp-action="Index">Listar Todos</a>
                     </div>
-
                     
             </div>
         </div>

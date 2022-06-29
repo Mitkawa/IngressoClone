@@ -48,14 +48,14 @@
                     <div class="col-md-12">
                         <div class="card-footer ">
                             <p class="card-text">
-                                <a class="btn btn-outline-primary float-right" asp-action="Details" asp-route-id="@item.Id">
-                                    <i class="bi bi-eye-fill"></i> Show Details
+                                <a class="btn btn-outline-primary float-right" asp-action="Detalhes" asp-route-id="@item.Id">
+                                    <i class="bi bi-eye-fill"></i> Detalhes
                                 </a>
                                 <a class="btn btn-success text-white @((DateTime.Now > item.DataAlteracao) ? "disabled" : "")"
-                                   asp-controller="Orders"
-                                   asp-action="AddItemToShoppingCart"
+                                   asp-controller="Pedidos"
+                                   asp-action="AddItemAoCarrinho"
                                    asp-route-id="@item.Id">
-                                    <i class="bi bi-cart-plus"></i> Add to Cart (Price @item.Preco.ToString("c"))
+                                    <i class="bi bi-cart-plus"></i> Adicionar ao Carrinho (Price @item.Preco.ToString("c"))
                                 </a>
                             </p>
                         </div>

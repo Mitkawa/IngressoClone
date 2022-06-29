@@ -34,29 +34,31 @@ namespace IngressoMVC.Controllers
         }
 
         [HttpPost]
-        public IActionResult Criar(PostFilmeDTO filmeDTO)
+        public IActionResult Criar(PostFilmeDTO filmeDto)
         {
-            var cinema =_context.Cinemas.FirstOrDefault(c => c.Nome == filmeDTO.NomeCinema);
+            var cinema = _context.Cinemas.FirstOrDefault(c => c.Nome == filmeDto.NomeCinema);
             if (cinema == null) return View();
 
-            var produtor = _context.Produtores.FirstOrDefault(p => p.Nome == filmeDTO.NomeProdutor);
+            var produtor = _context.Produtores.FirstOrDefault(p => p.Nome == filmeDto.NomePodutor);
             if (produtor == null) return View();
 
             Filme filme = new Filme
                 (
-                filmeDTO.Titulo,
-                filmeDTO.Descricao,
-                filmeDTO.Preco,
-                filmeDTO.ImageURL,
-                cinema.Id,
-                produtor.Id
+                    filmeDto.Titulo,
+                    filmeDto.Descricao,
+                    filmeDto.Preco,
+                    filmeDto.ImageURL,
+                    cinema.Id,
+                    produtor.Id
                 );
 
             _context.Add(filme);
             _context.SaveChanges();
 
+            //Incluir Relacionamentos
             return RedirectToAction(nameof(Index));
         }
+
         public IActionResult Atualizar(int id)
         {
             //buscar o ator no banco

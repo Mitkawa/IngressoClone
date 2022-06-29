@@ -7,22 +7,17 @@ namespace IngressoMVC.Models.ViewModels.RequestDTO
 {
     public class PostFilmeDTO
     {
-        public int Id { get; set; }
-        public DateTime DataCadastro { get; set; }
-        public DateTime DataAlteracao { get; set; }
-        public string Titulo { get;  set; }
-        public string Descricao { get;  set; }
-        public decimal Preco { get;  set; }
-        public string ImageURL { get;  set; }
+        public string Titulo { get; set; }
+        public string Descricao { get; set; }
+        public decimal Preco { get; set; }
+        public string ImageURL { get; set; }
 
         #region relacionamentos
         public string NomeCinema { get; set; }
-        public Cinema Cinema { get; set; }
 
-        public string NomeProdutor { get; set; }
-        public Produtor Produtor { get; set; }
+        public string NomePodutor { get; set; }
 
-        public List<string> NomesAtores { get; set; }
+        public List<string> NomeAtores { get; set; }
         public List<string> Categorias { get; set; }
         #endregion
     }

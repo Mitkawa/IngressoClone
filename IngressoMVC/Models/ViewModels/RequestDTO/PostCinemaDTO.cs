@@ -4,11 +4,12 @@ namespace IngressoMVC.Models.ViewModels.RequestDTO
 {
     public class PostCinemaDTO
     {
-        [Required(ErrorMessage ="O nome do Cinema é obrigatório")]
-        [StringLength(50, MinimumLength =3, ErrorMessage = "O nome deve ter no minimo 3 e no máximo 50 Caracteres !")]
+        [Required, StringLength(100, MinimumLength = 1, ErrorMessage = "Nome do cinema é obrigatório")]
         public string Nome { get; set; }
+
         public string Descricao { get; set; }
-        [Required(ErrorMessage ="É obrigatório informar a logo do Cinema !")]
+
+        [Required(ErrorMessage = "A LOGO do Cinema é obrigatória")]
         public string LogoURL { get; set; }
     }
 }

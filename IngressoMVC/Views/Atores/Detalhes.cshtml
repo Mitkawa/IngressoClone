@@ -1,4 +1,4 @@
-﻿@model Ator
+﻿@model IngressoMVC.Models.ViewModels.ResponseDTO.GetAtoresDTO
 
   
 <div class="row">
@@ -9,11 +9,7 @@
         <h1>@Model.Nome</h1>
         <p>@Model.Bio</p>
         <p>
-            Silvio Santos Ipsum É bom ou não éam? Mah você mora com o papai ou com a mamãem? O Raul Gil é gayam! ... Maa O Ah Ae! Ih Ih! O Raul Gil é gayamm! Você veio da caravana de ondeammm? Ha hai. Bem boladoam, bem boladoam. Bem gozadoam. Ma vale dérreaisam? Ma vai pra lá.
-            É com você Lombardiam. É dinheiro ou não éam? É fácil ou não éam? Mah é a porta da esperançaam. Ma! Ao adquirir o carnê do Baú, você estará concorrendo a um prêmio de cem mil reaisam. Ma você está certo dissoam?
-            Estamos em ritmo de festamm. Ha haeeee. Hi hi. Ma você está certo dissoam? O Raul Gil é gayam! ... Maa O Ah Ae! Ih Ih! O Raul Gil é gayamm! É bom ou não éam? Ha hai. Bem boladoam, bem boladoam. Bem gozadoam.
-            Boca sujuam... sem vergonhuamm. Ha hai. Bem boladoam, bem boladoam. Bem gozadoam. Estamos em ritmo de festamm. É namoro ou amizadeemm? Eu não queria perguntar isso publicamente, ma vou perguntar. Carla, você tem o ensino fundamentauam? Mah ooooee vem pra cá. Vem pra cá.
-            É dinheiro ou não éam? É com você Lombardiam. Ma! Ao adquirir o carnê do Baú, você estará concorrendo a um prêmio de cem mil reaisam. Ma tem ou não tem o celular do milhãouamm? É por sua conta e riscoamm? Boca sujuam... sem vergonhuamm.
+            
         </p>
     </div>
 
@@ -22,16 +18,14 @@
  @* Carrossel *@
 <div class="row">
     <div id="carouselExampleControls" class="carousel slide col-md-4 offset-md-4" data-ride="carousel">
+        
         <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/jtLB7xJKcbekmOYkb5NZditBsgk.jpg" class="d-block w-100">
-            </div>
-            <div class="carousel-item">
-                <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/tWtGNTJUAuiM2O9wv0jejw45Sji.jpg" class="d-block w-100">
-            </div>
-            <div class="carousel-item">
-                <img src="https://www.themoviedb.org/t/p/w300_and_h450_bestv2/lW7MvZ4m49IUj2UrUu4z0xVVl81.jpg" class="d-block w-100">
-            </div>
+            @foreach (var filme in @Model.FotoUrlFilmes)
+            {
+                <div class="carousel-item active">
+                    <img src="@filme" class="d-block w-100">
+                </div>
+            }
         </div>
         <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
