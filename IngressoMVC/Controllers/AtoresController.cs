@@ -3,6 +3,7 @@ using IngressoMVC.Models;
 using IngressoMVC.Models.ViewModels.RequestDTO;
 using IngressoMVC.Models.ViewModels.ResponseDTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace IngressoMVC.Controllers
@@ -23,19 +24,41 @@ namespace IngressoMVC.Controllers
 
         public IActionResult Detalhes(int id)
         {
-            var ator = _context.Atores.Find(id);
+            //var ator = _context.Atores.Find(id);
 
-            var result = _context.Atores.Where(at => at.Id == id)
-                            .Select(at => new GetAtoresDTO()
-                            {
-                                Bio = at.Bio,
-                                FotoPerfilURL = at.FotoPerfilURL,
-                                Nome = at.Nome,
-                                NomeFilmes = at.AtoresFilmes.Select(fm => fm.Filme.Titulo).ToList(),
-                                FotoUrlFilmes = at.AtoresFilmes.Select(fm => fm.Filme.ImageURL).ToList()
-                            }).FirstOrDefault();
+            //var result = _context.Atores.Where(at => at.Id == id)
+            //                .Select(at => new GetAtoresDTO()
+            //                {
+            //                    Bio = at.Bio,
+            //                    FotoPerfilURL = at.FotoPerfilURL,
+            //                    Nome = at.Nome,
+            //                    NomeFilmes = at.AtoresFilmes.Select(fm => fm.Filme.Titulo).ToList(),
+            //                    FotoUrlFilmes = at.AtoresFilmes.Select(fm => fm.Filme.ImageURL).ToList()
+            //                }).FirstOrDefault();
 
-            return View(result);
+            //return View(result);
+
+            var resultado = _context.Atores
+                .Include(af=>af.AtoresFilmes)
+                .ThenInclude(f=> f.Filme)
+                .FirstOrDefault(ator => ator.Id == id);
+            
+            if(resultado == null)
+            {
+                return View();
+            }
+
+            GetAtoresDTO atorDTO = new GetAtoresDTO()
+            {
+                Nome = resultado.Nome,
+                Bio = resultado.Bio,
+                FotoPerfilURL = resultado.FotoPerfilURL,
+                FotoUrlFilmes = resultado.AtoresFilmes.Select(af => af.Filme.ImageURL).ToList(),
+                NomeFilmes = resultado.AtoresFilmes.Select(af => af.Filme.Titulo).ToList()
+
+            };
+
+            return View(atorDTO);
 
         }
 
