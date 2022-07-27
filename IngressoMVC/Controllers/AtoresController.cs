@@ -17,72 +17,39 @@ namespace IngressoMVC.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index() => View(_context.Atores);
+
+        public IActionResult Detalhes(int id) => View(AtorFilmes(id));
+
+        public GetAtorDto AtorFilmes(int id)
         {
-            return View(_context.Atores);
-        }
+            var result = _context.Atores
+                .FirstOrDefault(at => at.Id == id);
 
-        public IActionResult Detalhes(int id)
-        {
-            //var ator = _context.Atores.Find(id);
-
-            //var result = _context.Atores.Where(at => at.Id == id)
-            //                .Select(at => new GetAtoresDTO()
-            //                {
-            //                    Bio = at.Bio,
-            //                    FotoPerfilURL = at.FotoPerfilURL,
-            //                    Nome = at.Nome,
-            //                    NomeFilmes = at.AtoresFilmes.Select(fm => fm.Filme.Titulo).ToList(),
-            //                    FotoUrlFilmes = at.AtoresFilmes.Select(fm => fm.Filme.ImageURL).ToList()
-            //                }).FirstOrDefault();
-
-            //return View(result);
-
-            var resultado = _context.Atores
-                .Include(af=>af.AtoresFilmes)
-                .ThenInclude(f=> f.Filme)
-                .FirstOrDefault(ator => ator.Id == id);
-            
-            if(resultado == null)
+            GetAtorDto ator = new GetAtorDto()
             {
-                return View();
-            }
-
-            GetAtoresDTO atorDTO = new GetAtoresDTO()
-            {
-                Nome = resultado.Nome,
-                Bio = resultado.Bio,
-                FotoPerfilURL = resultado.FotoPerfilURL,
-                FotoUrlFilmes = resultado.AtoresFilmes.Select(af => af.Filme.ImageURL).ToList(),
-                NomeFilmes = resultado.AtoresFilmes.Select(af => af.Filme.Titulo).ToList()
-
+                Nome = result.Nome,
+                Bio = result.Bio,
+                FotoPerfilURL = result.FotoPerfilURL,
+                FilmeFotoURL = result.AtoresFilmes.Select(af => af.Filme.ImageURL).ToList(),
+                TituloFilmes = result.AtoresFilmes.Select(af => af.Filme.Titulo).ToList()
             };
 
-            return View(atorDTO);
-
+            return ator;
         }
 
-        public IActionResult Criar()
-        {
-            return View();
-        }
-
+        public IActionResult Criar() => View();
 
         [HttpPost]
         public IActionResult Criar(PostAtorDTO atorDto)
         {
-            //validar os dados
             if (!ModelState.IsValid)
                 return View(atorDto);
 
-            //instanciar novo ator
             Ator ator = new Ator(atorDto.Nome, atorDto.Bio, atorDto.FotoPerfilURL);
-
-            //gravar esse ator no banco de dados
             _context.Atores.Add(ator);
-
-            //salvar as mudanças
             _context.SaveChanges();
+            
             return RedirectToAction(nameof(Index));
         }
 
@@ -91,13 +58,11 @@ namespace IngressoMVC.Controllers
             if (id == null)
                 return NotFound();
 
-            //buscar o ator no banco
             var result = _context.Atores.FirstOrDefault(a => a.Id == id);
 
             if (result == null)
                 return View();
 
-            //passar o ator na view
             return View(result);
         }
 
@@ -121,19 +86,18 @@ namespace IngressoMVC.Controllers
         {
             var result = _context.Atores.FirstOrDefault(a => a.Id == id);
 
-            if (result == null) return View();
+            if (result == null) return View("NotFould");
 
             return View(result);
         }
 
-        [HttpPost, ActionName("Deletar")]
-        public IActionResult ConfirmarDeletar(int id)
-        {
-            var result = _context.Atores.FirstOrDefault(a => a.Id == id);
-            _context.Atores.Remove(result);
-            _context.SaveChanges();
+[HttpPost, ActionName("Deletar")]
+public IActionResult ConfirmarDeletar(int id)
+{
+    var result = _context.Atores.FirstOrDefault(a => a.Id == id);
+    _context.Atores.Remove(result);
 
-            return RedirectToAction(nameof(Index));
-        }
+    return RedirectToAction(nameof(Index));
+}
     }
 }

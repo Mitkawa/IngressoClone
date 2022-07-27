@@ -15,9 +15,9 @@ namespace IngressoMVC.Models
             FotoPerfilURL = fotoPerfilURL;
         }
 
-        public int Id { get; set; }
-        public DateTime DataCadastro { get; set; }
-        public DateTime DataAlteracao { get; set; }
+        public int Id { get; private set; }
+        public DateTime DataCadastro { get; private set; }
+        public DateTime DataAlteracao { get; private set; }
 
         [Display(Name = "Nome")]
         public string Nome { get; private set; }

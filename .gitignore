@@ -48,7 +48,7 @@ artifacts/
 **/Properties/launchSettings.json
 
 # VS Code
-.vscode/
+#.vscode/ resolver problema com criação da pasta no Senac
 
 *_i.c
 *_p.c

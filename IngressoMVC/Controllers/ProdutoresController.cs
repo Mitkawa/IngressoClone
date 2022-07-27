@@ -3,6 +3,7 @@ using IngressoMVC.Models;
 using IngressoMVC.Models.ViewModels.RequestDTO;
 using IngressoMVC.Models.ViewModels.ResponseDTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace IngressoMVC.Controllers
@@ -16,25 +17,24 @@ namespace IngressoMVC.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index() => View(_context.Produtores);
+
+        public IActionResult Detalhes(int id) => View(ProdutorFilmes(id));
+
+        public GetProdutorDto ProdutorFilmes(int id)
         {
-            return View(_context.Produtores);
-        }
+            var produtor = _context.Produtores.Include(p => p.Filmes).FirstOrDefault(p => p.Id == id);
 
-        public IActionResult Detalhes(int id)
-        {
+            GetProdutorDto result = new GetProdutorDto()
+            {
+                Nome = produtor.Nome,
+                Bio = produtor.Bio,
+                FotoPerfilURL = produtor.FotoPerfilURL,
+                FilmeFotoURL = produtor.Filmes.Select(fm => fm.ImageURL).ToList(),
+                TituloFilmes = produtor.Filmes.Select(fm => fm.Titulo).ToList()
+            };            
 
-            var result = _context.Produtores.Where(at => at.Id == id)
-                            .Select(at => new GetProdutoresDTO()
-                            {
-                                Bio = at.Bio,
-                                FotoPerfilURL = at.FotoPerfilURL,
-                                Nome = at.Nome,
-                                NomeFilmes = at.Filmes.Select(fm => fm.Titulo).ToList(),
-                                FotoUrlFilmes = at.Filmes.Select(fm => fm.ImageURL).ToList()
-                            }).FirstOrDefault();
-
-            return View(result);
+            return result;
         }
 
         public IActionResult Criar()

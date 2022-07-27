@@ -2,6 +2,7 @@
 using IngressoMVC.Models;
 using IngressoMVC.Models.ViewModels.RequestDTO;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
 
 namespace IngressoMVC.Controllers
 {
@@ -44,15 +45,53 @@ namespace IngressoMVC.Controllers
         public IActionResult Atualizar(int id)
         {
             //buscar o ator no banco
+            var result = _context.Cinemas.FirstOrDefault(x => x.Id == id);
+
+            if (result == null)
+            {
+                return View("NotFould");
+            }
             //passar o ator na view
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Atualizar(PostCinemaDTO cinemaDTO, int id)
+        {
+            var result = _context.Cinemas.FirstOrDefault(x => x.Id == id);
+            if (!ModelState.IsValid)
+            {
+                return View(result);
+            }
+
+            result.AlterarDados(cinemaDTO.Nome, cinemaDTO.Descricao, cinemaDTO.LogoURL);
+            _context.Update(result);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Deletar(int id)
         {
             //buscar o ator no banco
+            var result = _context.Cinemas.FirstOrDefault(x => x.Id == id);
+            if (!ModelState.IsValid)
+            {
+                return View(result);
+            }
+
             //passar o ator na view
             return View();
+        }
+
+        [HttpPost, ActionName("Deletar")]
+        public IActionResult ConfirmarDeletar(int id)
+        {
+            var result = _context.Cinemas.FirstOrDefault(x => x.Id == id);
+            _context.Remove(result);
+            _context.SaveChanges();
+
+            return RedirectToAction(nameof(Index));
         }
     }
 }

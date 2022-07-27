@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
+  <Class Name="IngressoMVC.Models.Artista">
+    <Position X="0.75" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAECAAQAAAAAAAACIAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Artista.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="IngressoMVC.Models.Ator">
+    <Position X="3.25" Y="6.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Ator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IngressoMVC.Models.AtorFilme">
+    <Position X="6" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgQAAAAgAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\AtorFilme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IngressoMVC.Models.Categoria" BaseTypeListCollapsed="true">
+    <Position X="8.75" Y="1" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAEAAAQAIAAAAAAAIAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Categoria.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="IngressoMVC.Models.Cinema" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="4.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACCAAAAAABAAAAAAAQAAAAAAAgAIAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\Cinema.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="IngressoMVC.Models.Filme" BaseTypeListCollapsed="true">
+    <Position X="3.5" Y="1" Width="3" />
+    <TypeIdentifier>
+      <HashCode>CAADAAAAAAEBACAABABQAIAAAAAAQIAAAAAEAAAAABA=</HashCode>
+      <FileName>Models\Filme.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="IngressoMVC.Models.FilmeCategoria">
+    <Position X="6.75" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAgAAAAAAAAAAAgAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Models\FilmeCategoria.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IngressoMVC.Models.Produtor">
+    <Position X="0.75" Y="6.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Produtor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IngressoMVC.Models.ViewModels.RequestDTO.PostAtorDTO">
+    <Position X="12.25" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAACAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\ViewModels\RequestDTO\PostAtorDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IngressoMVC.Models.ViewModels.RequestDTO.PostCategoriaDTO">
+    <Position X="12.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\ViewModels\RequestDTO\PostCategoriaDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IngressoMVC.Models.ViewModels.RequestDTO.PostCinemaDTO">
+    <Position X="16.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\ViewModels\RequestDTO\PostCinemaDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IngressoMVC.Models.ViewModels.RequestDTO.PostFilmeDTO">
+    <Position X="12.25" Y="4.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQgABAAAABAAAAAAAACAAAAAAAAAEAACAABA=</HashCode>
+      <FileName>Models\ViewModels\RequestDTO\PostFilmeDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IngressoMVC.Models.ViewModels.RequestDTO.PostProdutorDTO">
+    <Position X="14.25" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAACAAAAAAAAAAACAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\ViewModels\RequestDTO\PostProdutorDTO.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IngressoMVC.Models.ViewModels.ResponseDTO.GetAtorDto">
+    <Position X="14.5" Y="5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAACAAAAAAAAAACCAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\ViewModels\ResponseDTO\GetAtorDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="IngressoMVC.Models.ViewModels.ResponseDTO.GetProdutorDto">
+    <Position X="14.5" Y="2.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAACAAAAAAAAAACCAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Models\ViewModels\ResponseDTO\GetProdutorDto.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="IngressoMVC.Models.Interfaces.IEntidade">
+    <Position X="1" Y="1" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAQAAAAAAAAAIAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Interfaces\IEntidade.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

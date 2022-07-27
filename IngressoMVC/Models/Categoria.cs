@@ -9,15 +9,17 @@ namespace IngressoMVC.Models
         public Categoria(string nome)
         {
             Nome = nome;
+            DataCadastro = DateTime.Now;
+            DataAlteracao = DataCadastro;
         }
 
-        public int Id { get; set; }
-        public DateTime DataCadastro { get; set; }
-        public DateTime DataAlteracao { get; set; }
+        public int Id { get; private set; }
+        public DateTime DataCadastro { get; private set; }
+        public DateTime DataAlteracao { get; private set; }
         public string Nome { get; private set; }
         public List<FilmeCategoria> FilmesCategorias { get; set; }
 
-        public void AtualizarCategoria(string nome) 
+        public void AtualizarDados(string nome)
         {
             Nome = nome;
             DataAlteracao = DateTime.Now;
