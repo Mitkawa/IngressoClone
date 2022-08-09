@@ -1,2 +1,55 @@
 ﻿@model Cinema
 
+<div class="row">
+    <div class="col-md-2">
+        <img class="img-thumbnail" src="@Model.LogoURL" />
+    </div>
+    <div class="col-md-10">
+        <h1>@Html.DisplayNameFor(x => x.Nome)</h1>
+        <p>@Model.Descricao</p>
+    </div>
+
+</div>
+
+@if (Model.Filmes.Count > 0)
+{
+    @* Carrossel *@
+    <div class="row">
+        <div id="carouselExampleControls" class="carousel slide col-md-4 offset-md-4" data-ride="carousel">
+            <div class="carousel-inner">
+                @foreach (var filme in Model.Filmes)
+                {
+                    if (filme == Model.Filmes.First())
+                    {
+                        <div class="carousel-item active">
+                            <a asp-controller="Filmes" asp-action="Detalhes" asp-route-id="@filme.Id">
+                                <img src="@filme.ImagemURL" class="d-block w-100">
+                            </a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="carousel-item">
+                            <a asp-controller="Filmes" asp-action="Detalhes" asp-route-id="@filme.Id">
+                                <img src="@filme.ImagemURL" class="d-block w-100">
+                            </a>
+                        </div>
+                    }
+                }
+            </div>
+            <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="sr-only">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-target="#carouselExampleControls" data-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="sr-only">Next</span>
+            </button>
+        </div>
+    </div>
+    @* Fim Carrossel*@
+}
+else
+{
+    <h1>Não há filmes em estréia no @Model.Nome</h1>
+}

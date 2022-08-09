@@ -125,10 +125,16 @@ namespace IngressoMVC.Migrations
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DataEncerramento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataLancamento")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Descricao")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageURL")
+                    b.Property<string>("ImagemURL")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Preco")

@@ -1,1 +1,54 @@
-﻿<h1>Atualizar</h1>
+﻿@model IngressoMVC.Models.Filme
+
+@{
+    ViewData["Title"] = "Atualizar";
+}
+
+<h1>Atualizar</h1>
+
+<h4>Ator</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Atualizar">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="Titulo" class="control-label"></label>
+                <input asp-for="Titulo" class="form-control" />
+                <span asp-validation-for="Titulo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Descricao" class="control-label"></label>
+                <input asp-for="Descricao" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="ImagemURL" class="control-label"></label>
+                <input asp-for="ImagemURL" class="form-control" />
+                <span asp-validation-for="ImagemURL" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Preco" class="control-label"></label>
+                <input asp-for="Preco" class="form-control" />
+                <span asp-validation-for="Preco" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CinemaId" class="control-label"></label>
+                <input asp-for="CinemaId" class="form-control" />
+                <span asp-validation-for="CinemaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProdutorId" class="control-label"></label>
+                <input asp-for="ProdutorId" class="form-control" />
+                <span asp-validation-for="CinemaId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Salvar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Lista de Filmes</a>
+</div>

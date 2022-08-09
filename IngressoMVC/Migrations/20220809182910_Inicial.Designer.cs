@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace IngressoMVC.Migrations
 {
     [DbContext(typeof(IngressoDbContext))]
-    [Migration("20220520005112_Inicial")]
+    [Migration("20220809182910_Inicial")]
     partial class Inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -127,10 +127,16 @@ namespace IngressoMVC.Migrations
                     b.Property<DateTime>("DataCadastro")
                         .HasColumnType("datetime2");
 
+                    b.Property<DateTime>("DataEncerramento")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DataLancamento")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Descricao")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImageURL")
+                    b.Property<string>("ImagemURL")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<decimal>("Preco")

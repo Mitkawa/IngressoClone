@@ -3,8 +3,15 @@
 @{
     ViewData["Title"] = "Lista de Filmes";
 }
+<h1>
+    Filmes - 
+    <a class="btn btn-dark" asp-action="Criar">
+        Cadastrar
+    </a>
+</h1>
 
 <div class="row">
+
     @foreach (var item in Model)
     {
         <div class="col-md-4 col-xs-6 border-primary mb-3">
@@ -14,26 +21,25 @@
                         <div class="card-header text-white bg-info">
                             <p class="card-text">
                                 <h5 class="card-title">
-                                    @item.Titulo                                    
+                                    @item.Titulo
                                 </h5>
                             </p>
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <img src="@item.ImageURL" width="100%" alt="@item.Titulo">
+                        <img src="@item.ImagemURL" width="100%" alt="@item.Titulo">
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">
-                            <p class="card-text">@item.Descricao</p>
-                            <p class="card-text"><b>Start Date: </b>@item.DataCadastro.ToString("dd MMM yy")</p>
-                            <p class="card-text"><b>End Date: </b>@item.DataAlteracao.ToString("dd MMM yy")</p>
+                            <p class="card-text"><b>Estréia: </b>@item.DataLancamento.ToString("dd MMM yy")</p>
+                            <p class="card-text"><b>Até: </b>@item.DataEncerramento.ToString("dd MMM yy")</p>
                             <p class="card-text ">
                                 <b>Status: </b>
-                                @if (DateTime.Now >= item.DataCadastro && DateTime.Now <= item.DataAlteracao)
+                                @if (DateTime.Now >= item.DataLancamento && DateTime.Now <= item.DataEncerramento)
                                 {
                                     <span class="badge bg-success text-white">DISPONÍVEL</span>
                                 }
-                                else if (DateTime.Now > item.DataAlteracao)
+                                else if (DateTime.Now > item.DataEncerramento)
                                 {
                                     <span class="badge bg-danger text-white">EXPIRADO</span>
                                 }
@@ -51,10 +57,11 @@
                                 <a class="btn btn-outline-primary float-right" asp-action="Detalhes" asp-route-id="@item.Id">
                                     <i class="bi bi-eye-fill"></i> Detalhes
                                 </a>
+                                <br><br>
                                 <a class="btn btn-success text-white @((DateTime.Now > item.DataAlteracao) ? "disabled" : "")"
-                                   asp-controller="Pedidos"
-                                   asp-action="AddItemAoCarrinho"
-                                   asp-route-id="@item.Id">
+                               asp-controller="Pedidos"
+                               asp-action="AddItemAoCarrinho"
+                               asp-route-id="@item.Id">
                                     <i class="bi bi-cart-plus"></i> Adicionar ao Carrinho (Price @item.Preco.ToString("c"))
                                 </a>
                             </p>

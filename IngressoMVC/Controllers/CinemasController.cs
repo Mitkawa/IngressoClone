@@ -2,6 +2,7 @@
 using IngressoMVC.Models;
 using IngressoMVC.Models.ViewModels.RequestDTO;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
 
 namespace IngressoMVC.Controllers
@@ -22,7 +23,14 @@ namespace IngressoMVC.Controllers
 
         public IActionResult Detalhes(int id)
         {
-            return View(_context.Cinemas.Find(id));
+            var cinema = _context.Cinemas
+                .Include(c => c.Filmes)
+                .FirstOrDefault(c => c.Id == id);
+
+            if (cinema == null)
+                return View("NotFound");
+
+            return View(cinema);
         }
 
         public IActionResult Criar()
@@ -34,7 +42,7 @@ namespace IngressoMVC.Controllers
         public IActionResult Criar(PostCinemaDTO cinemaDto)
         {
             if (!ModelState.IsValid) return View(cinemaDto);
-            
+
             Cinema cinema = new Cinema(cinemaDto.Nome, cinemaDto.Descricao, cinemaDto.LogoURL);
             _context.Cinemas.Add(cinema);
             _context.SaveChanges();
@@ -44,50 +52,43 @@ namespace IngressoMVC.Controllers
 
         public IActionResult Atualizar(int id)
         {
-            //buscar o ator no banco
-            var result = _context.Cinemas.FirstOrDefault(x => x.Id == id);
+            var result = _context.Cinemas.FirstOrDefault(cinema => cinema.Id == id);
 
             if (result == null)
-            {
-                return View("NotFould");
-            }
-            //passar o ator na view
-            return View();
+                return View("NotFound");
+
+            return View(result);
         }
 
         [HttpPost]
-        public IActionResult Atualizar(PostCinemaDTO cinemaDTO, int id)
+        public IActionResult Atualizar(int id, PostCinemaDTO cinemaDTO)
         {
-            var result = _context.Cinemas.FirstOrDefault(x => x.Id == id);
-            if (!ModelState.IsValid)
-            {
-                return View(result);
-            }
-
-            result.AlterarDados(cinemaDTO.Nome, cinemaDTO.Descricao, cinemaDTO.LogoURL);
-            _context.Update(result);
+            var result = _context.Cinemas.FirstOrDefault(cinema => cinema.Id == id);
+            result.AtualizarDados(cinemaDTO.Nome, cinemaDTO.Descricao, cinemaDTO.LogoURL);
+            _context.Cinemas.Update(result);
             _context.SaveChanges();
-
             return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Deletar(int id)
         {
-            //buscar o ator no banco
-            var result = _context.Cinemas.FirstOrDefault(x => x.Id == id);
-            if (!ModelState.IsValid)
+            var result = _context.Cinemas.FirstOrDefault(cinema => cinema.Id == id);
+
+            if (result == null)
             {
-                return View(result);
+                return View("NotFound");
             }
 
-            //passar o ator na view
-            return View();
+            return View(result);
         }
 
         [HttpPost, ActionName("Deletar")]
         public IActionResult ConfirmarDeletar(int id)
         {
-            var result = _context.Cinemas.FirstOrDefault(x => x.Id == id);
+            var result = _context.Cinemas.FirstOrDefault(cinema => cinema.Id == id);
+            if (result == null)
+                return View("NotFound");
+
             _context.Remove(result);
             _context.SaveChanges();
 

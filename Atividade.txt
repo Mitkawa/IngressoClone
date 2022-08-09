@@ -1,0 +1,14 @@
+# Atividade 1
+PostFilmeDto, tratar categorias por Id e não por nome
+FilmesController, tratar categorias por Id e não por nome
+
+# Atividade 2
+Verificar todas as controllers, retornar página "NotFound" caso um resultado não seja encontrado no carregamento de uma nova View.
+
+# Atividade 3
+Criar Views para a controller do Filme.
+Criar Validações de entrada para Filme.
+Criar View de atualizar Cinema
+
+# Atividade 4
+Criar e implementar DTOs de resposta para Filme, Cinema e Categoria.

@@ -24,11 +24,11 @@ namespace IngressoMVC.Models
 
         public List<Filme> Filmes { get; set; }
 
-        public void AlterarDados(string nome, string descricao, string logourl) 
+        public void AtualizarDados(string nome, string descricao, string logoURL)
         {
             Nome = nome;
             Descricao = descricao;
-            LogoURL = logourl;
+            LogoURL = logoURL;
 
             DataAlteracao = DateTime.Now;
         }

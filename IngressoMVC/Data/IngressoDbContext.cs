@@ -25,13 +25,14 @@ namespace IngressoMVC.Data
                 af.CategoriaId
             });
         }
-
-        public DbSet<Filme> Filmes { get; set; }
+        
         public DbSet<Ator> Atores { get; set; }
-        public DbSet<AtorFilme> AtoresFilmes { get; set; }
+        public DbSet<Produtor> Produtores { get; set; }
         public DbSet<Categoria> Categorias { get; set; }
         public DbSet<Cinema> Cinemas { get; set; }
+        public DbSet<Filme> Filmes { get; set; }
+        public DbSet<AtorFilme> AtoresFilmes { get; set; }
         public DbSet<FilmeCategoria> FilmesCategorias { get; set; }
-        public DbSet<Produtor> Produtores { get; set; }
+        
     }
 }

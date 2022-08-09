@@ -33,7 +33,7 @@ namespace IngressoMVC.Models
             Nome = nome;
             Bio = bio;
             FotoPerfilURL = fotoPerfilURL;
-            DataAlteracao = System.DateTime.Now;
+            DataAlteracao = DateTime.Now;
         }
     }
 }

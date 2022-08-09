@@ -1,36 +1,39 @@
-﻿@model IngressoMVC.Models.ViewModels.ResponseDTO.GetAtorDto
+﻿@model Ator
 
 <div class="row">
     <div class="col-md-2">
-     <img class="img-thumbnail" src="@Model.FotoPerfilURL" />
+        <img class="img-thumbnail" src="@Model.FotoPerfilURL" />
     </div>
     <div class="col-md-10">
         <h1>@Model.Nome</h1>
-        <p>@Model.Bio</p>        
+        <p>@Model.Bio</p>
     </div>
-
 </div>
 
-@if(@Model.FilmeFotoURL.Count > 0)
+@if (@Model.AtoresFilmes.Count > 0)
 {
     <div class="row">
         <div id="carouselExampleControls" class="carousel slide col-md-4 offset-md-4" data-ride="carousel">
             <div class="carousel-inner">
-                @foreach(var filme in @Model.FilmeFotoURL)
+                @foreach (var atorFilme in @Model.AtoresFilmes)
                 {
-                    if(filme == @Model.FilmeFotoURL.First())
+                    if (atorFilme == @Model.AtoresFilmes.First())
                     {
                         <div class="carousel-item active">
-                            <img src="@filme" class="d-block w-100">
+                            <a asp-controller="Filmes" asp-action="Detalhes" asp-route-id="@atorFilme.FilmeId">
+                                <img src="@atorFilme.Filme.ImagemURL" class="d-block w-100">
+                            </a>
                         </div>
                     }
                     else
                     {
                         <div class="carousel-item">
-                            <img src="@filme" class="d-block w-100">
+                            <a asp-controller="Filmes" asp-action="Detalhes" asp-route-id="@atorFilme.FilmeId">
+                                <img src="@atorFilme.Filme.ImagemURL" class="d-block w-100">
+                            </a>
                         </div>
                     }
-                }            
+                }
             </div>
             <button class="carousel-control-prev" type="button" data-target="#carouselExampleControls" data-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
