@@ -13,6 +13,7 @@
                         <p class="card-text">
                             <h5 class="card-title">
                                 @Model.Titulo
+                                <a class="text-white float-right" asp-action="Atualizar" asp-route-id="@Model.Id"><i class="fa-regular fa-pen-to-square"></i></a>
                             </h5>
                         </p>
                     </div>
@@ -30,22 +31,29 @@
                             </a>
                         </p>
                         <p class="card-text">
-                            <b>Producer: </b>
+                            <b>Produtor: </b>
                             <a asp-controller="Produtores" asp-action="Detalhes" asp-route-id="@Model.ProdutorId">
                                 @Model.Produtor.Nome
                             </a>
                         </p>
+                        <p class="card-text">
+                            <b>Categorias: </b>
+                            @foreach(var filmeCategoria in Model.FilmesCategorias)
+                            {
+                                <span class="badge badge-dark">@filmeCategoria.Categoria.Nome </span>
+                            }
+                        </p>
                         <p class="card-text"><b>Estréia: </b>@Model.DataLancamento.ToString("dd MMM yy")</p>
                         <p class="card-text"><b>Até: </b>@Model.DataEncerramento.ToString("dd MMM yy")</p>
                         <p>
-                            <b>Status: </b>                           
+                            <b>Situação: </b>                           
                             @if (DateTime.Now >= Model.DataLancamento && DateTime.Now <= Model.DataEncerramento)
                             {
                                 <span class="badge bg-success text-white">DISPONÍVEL</span>
                             }
                             else if (DateTime.Now > Model.DataEncerramento)
                             {
-                                <span class="badge bg-danger text-white">EXPIRADO</span>
+                                <span class="badge bg-danger text-white"><i class="fa-solid fa-hourglass"></i>EXPIRADO</span>
                             }
                             else
                             {
@@ -53,7 +61,7 @@
                             }
                         </p>
                         <p class="card-text">
-                            <b>Actors: </b>
+                            <b>Atores: </b>
                             <hr />
                             <div class="row">
                                 @foreach (var atore_filme in Model.AtoresFilmes)
@@ -73,11 +81,13 @@
                     <div class="card-footer">
                         <p class="card-text">
                             <a class="btn btn-outline-primary float-right" asp-action="Index">
-                                Back to List
+                                Lista de Filmes
                             </a>
-                            <a class="btn btn-success text-white  @((DateTime.Now > Model.DataAlteracao) ? "disabled" : "")" 
-                               asp-controller="Orders" 
-                               asp-action="AddItemToShoppingCart" asp-route-id="@Model.Id"><i class="bi bi-cart-plus"></i> Add to Cart (Price @Model.Preco.ToString("c"))</a>
+                            <a class="btn btn-success text-white  @((DateTime.Now > Model.DataEncerramento) ? "disabled" : "")" 
+                               asp-controller="Pedidos" 
+                               asp-action="AdicionarCarrinho" asp-route-id="@Model.Id">
+                               <i class="fa-solid fa-cart-arrow-down"></i> Adicionar (@Model.Preco.ToString("c"))
+                            </a>
                         </p>
                     </div>
                 </div>

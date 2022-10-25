@@ -30,7 +30,7 @@ namespace IngressoMVC.Controllers
                 .FirstOrDefault(ator => ator.Id == id);
 
             if (resultado == null)
-                return View("NotFound");
+                return View("NotFound");           
 
             return View(resultado);
         }
@@ -46,7 +46,7 @@ namespace IngressoMVC.Controllers
             Ator ator = new Ator(atorDto.Nome, atorDto.Bio, atorDto.FotoPerfilURL);
             _context.Atores.Add(ator);
             _context.SaveChanges();
-
+            
             return RedirectToAction(nameof(Index));
         }
 

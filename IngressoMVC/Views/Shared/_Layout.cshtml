@@ -12,26 +12,33 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-controller="Filmes" asp-action="Index"><i class="fas fa-home"></i></a>
+                <a class="navbar-brand" asp-controller="Filmes" asp-action="Index"><i class="fa-solid fa-film"></i> Filmes</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
+
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Atores" asp-action="Index">Atores</a>
+                            <a class="nav-link text-dark" asp-controller="Atores" asp-action="Index"><i class="fa-solid fa-users-rectangle"></i> Atores</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Cinemas" asp-action="Index">Cinemas</a>
+                            <a class="nav-link text-dark" asp-controller="Cinemas" asp-action="Index"><i class="fa-regular fa-tape"></i> Cinemas</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Produtores" asp-action="Index">Produtores</a>
+                            <a class="nav-link text-dark" asp-controller="Produtores" asp-action="Index"><i class="fa-solid fa-address-card"></i> Produtores</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-controller="Categorias" asp-action="Index">Categorias</a>
+                            <a class="nav-link text-dark" asp-controller="Categorias" asp-action="Index"><i class="fa-regular fa-table-list"></i> Categorias</a>
                         </li>
                     </ul>
+                    <form class="form-inline my-2 my-lg-0" asp-controller="Filmes" asp-action="Buscar" style="padding-right: 25px;">
+                        <input name="filtroDeBsuca" type="text" class="form-control" placeholder="Buscar filme...">
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </button>
+                    </form>
                 </div>
             </div>
         </nav>

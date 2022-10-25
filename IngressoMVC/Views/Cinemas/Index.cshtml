@@ -1,13 +1,11 @@
 ﻿@model IEnumerable<Cinema>
 
-<div class="row">
-    <div class="col-md-10 offset-md-1">
-        <h1>
-            Cinemas - <a class="btn btn-dark" asp-action="Criar">Cadastrar</a>
-        </h1>
+<partial name="_NovoItem" model="nameof(Cinema)" />
 
+<div class="row">
+    <div class="col-md-10 offset-md-1">        
         <div class="col-12 my-2">
-            <input class="form-control" type="text" name="nome" id="nome" placeholder="Buscar ator ou atriz... " />
+            <input class="form-control" type="text" name="nome" id="nome" placeholder="Buscar cinema... " />
         </div>
 
         <table class="table table-striped">

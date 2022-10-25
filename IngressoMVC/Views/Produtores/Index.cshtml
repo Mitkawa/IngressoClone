@@ -1,16 +1,10 @@
 ﻿@model IEnumerable<Produtor>
 
+<partial name="_NovoItem" model="nameof(Produtor)" />
 <div class="row">
     <div class="col-md-10 offset-md-1">
-        <h1>Produtores 
-        -
-        <a class="btn btn-dark" asp-action="Criar">
-            Cadastrar
-        </a>
-        </h1>
-
         <div class="col-12 my-2">
-            <input class="form-control" type="text" name="nome" id="nome" placeholder="Buscar ator ou atriz... " />
+            <input class="form-control" type="text" name="nome" id="nome" placeholder="Buscar produtor... " />
         </div>
 
         <table class="table table-striped">

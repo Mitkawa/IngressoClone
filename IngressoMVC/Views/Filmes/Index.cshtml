@@ -3,15 +3,11 @@
 @{
     ViewData["Title"] = "Lista de Filmes";
 }
-<h1>
-    Filmes - 
-    <a class="btn btn-dark" asp-action="Criar">
-        Cadastrar
-    </a>
-</h1>
+
+@*@Html.Partial("_NovoItem", "Filme")*@
+<partial name="_NovoItem" model="nameof(Filme)"/>
 
 <div class="row">
-
     @foreach (var item in Model)
     {
         <div class="col-md-4 col-xs-6 border-primary mb-3">
@@ -27,21 +23,21 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <img src="@item.ImagemURL" width="100%" alt="@item.Titulo">
+                        <a asp-action="Detalhes" asp-route-id="@item.Id"><img src="@item.ImagemURL" width="100%" alt="@item.Titulo"></a>
                     </div>
                     <div class="col-md-6">
                         <div class="card-body">
                             <p class="card-text"><b>Estréia: </b>@item.DataLancamento.ToString("dd MMM yy")</p>
                             <p class="card-text"><b>Até: </b>@item.DataEncerramento.ToString("dd MMM yy")</p>
                             <p class="card-text ">
-                                <b>Status: </b>
+                                <b>Situação: </b>
                                 @if (DateTime.Now >= item.DataLancamento && DateTime.Now <= item.DataEncerramento)
                                 {
                                     <span class="badge bg-success text-white">DISPONÍVEL</span>
                                 }
                                 else if (DateTime.Now > item.DataEncerramento)
                                 {
-                                    <span class="badge bg-danger text-white">EXPIRADO</span>
+                                    <span class="badge bg-danger text-white"><i class="fa-solid fa-hourglass"></i> EXPIRADO</span>
                                 }
                                 else
                                 {
@@ -55,14 +51,13 @@
                         <div class="card-footer ">
                             <p class="card-text">
                                 <a class="btn btn-outline-primary float-right" asp-action="Detalhes" asp-route-id="@item.Id">
-                                    <i class="bi bi-eye-fill"></i> Detalhes
+                                    <i class="fa-solid fa-eye"></i> Detalhes
                                 </a>
-                                <br><br>
-                                <a class="btn btn-success text-white @((DateTime.Now > item.DataAlteracao) ? "disabled" : "")"
+                                <a class="btn btn-success text-white @((DateTime.Now > item.DataEncerramento) ? "disabled" : "")"
                                asp-controller="Pedidos"
-                               asp-action="AddItemAoCarrinho"
+                               asp-action="AdicionarCarrinho"
                                asp-route-id="@item.Id">
-                                    <i class="bi bi-cart-plus"></i> Adicionar ao Carrinho (Price @item.Preco.ToString("c"))
+                                    <i class="fa-solid fa-cart-arrow-down"></i> Adicionar (@item.Preco.ToString("c"))
                                 </a>
                             </p>
                         </div>
