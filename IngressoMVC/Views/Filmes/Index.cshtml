@@ -14,7 +14,7 @@
             <div class="card mb-3" style="max-width: 540px;">
                 <div class="row g-0">
                     <div class="col-md-12">
-                        <div class="card-header text-white bg-info">
+                        <div class="card-header text-black bg-danger">
                             <p class="card-text">
                                 <h5 class="card-title">
                                     @item.Titulo
@@ -47,18 +47,18 @@
 
                         </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-9 mb-2">
                         <div class="card-footer ">
                             <p class="card-text">
-                                <a class="btn btn-outline-primary float-right" asp-action="Detalhes" asp-route-id="@item.Id">
-                                    <i class="fa-solid fa-eye"></i> Detalhes
+                                <a class="btn btn-outline-danger float-right" asp-action="Detalhes" asp-route-id="@item.Id">
+                                    <i class="fa-solid fa-eye align-content-md-center"></i> Detalhes
                                 </a>
-                                <a class="btn btn-success text-white @((DateTime.Now > item.DataEncerramento) ? "disabled" : "")"
+@*                                <a class="btn btn-success text-white @((DateTime.Now > item.DataEncerramento) ? "disabled" : "")"
                                asp-controller="Pedidos"
                                asp-action="AdicionarCarrinho"
                                asp-route-id="@item.Id">
                                     <i class="fa-solid fa-cart-arrow-down"></i> Adicionar (@item.Preco.ToString("c"))
-                                </a>
+                                </a>*@
                             </p>
                         </div>
                     </div>
