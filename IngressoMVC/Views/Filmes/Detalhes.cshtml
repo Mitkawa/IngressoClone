@@ -80,14 +80,14 @@
                 <div class="col-md-12">
                     <div class="card-footer">
                         <p class="card-text">
-                            <a class="btn btn-outline-primary float-right" asp-action="Index">
+                            <a class="btn btn-outline-primary float-right mb-1" asp-action="Index">
                                 Lista de Filmes
                             </a>
-                            <a class="btn btn-success text-white  @((DateTime.Now > Model.DataEncerramento) ? "disabled" : "")" 
+                           @* <a class="btn btn-success text-white  @((DateTime.Now > Model.DataEncerramento) ? "disabled" : "")" 
                                asp-controller="Pedidos" 
                                asp-action="AdicionarCarrinho" asp-route-id="@Model.Id">
                                <i class="fa-solid fa-cart-arrow-down"></i> Adicionar (@Model.Preco.ToString("c"))
-                            </a>
+                            </a>*@
                         </p>
                     </div>
                 </div>
